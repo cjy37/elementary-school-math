@@ -1,0 +1,165 @@
+html, body, form, input, optgroup, select,
+button, input, select, textarea, .app-md, .app-ios
+{
+    font-family: consolas,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,"Microsoft YaHei",Roboto,sans-serif!important;
+}
+label, h1, h2, h3, h4, h5, h6
+{
+    font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif!important;
+}
+
+.title, .title-md, .toolbar-title ,.toolbar-title-md {
+    font-family: consolas,-apple-system,BlinkMacSystemFont,Helvetica,"Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,"Microsoft YaHei",Roboto,sans-serif!important;
+}
+
+/* config.vue */
+.page__hd {
+    padding: 40px 20px;
+    background-color: #fff;
+}
+.page, body {
+    background-color: #f8f8f8;
+}
+
+/* Battle.veu */
+.battle .weui-form-preview {
+    height: 60vh;
+}
+.battle h1.page__title {
+    text-align: center;
+    font-size: -webkit-xxx-large;
+    color: #000;
+}
+.battle .weui-vcode-btn {
+    color: #000;
+}
+.battle .weui-grids {
+    background-color: #fff;
+}
+.battle .weui-cells_form input::placeholder {
+    color: #eee;
+}
+.battle .weui-grid__label {
+    font-size: 2.5rem;
+}
+.battle input.weui-input {
+    line-height: 45px;
+    height: 45px;
+    text-align: center;
+    color: red;
+    font-size: 1.8rem;
+}
+.battle .weui-grid {
+    padding: 10px;
+}
+.battle .weui-cell__bd.answer-input {
+    height: 45px;
+    padding: 0 0 0 55px;
+}
+.battle .weui-cell__bd.answer-input.has-error.has-feedback {
+    border: 1px solid red;
+}
+.battle .weui-cell.weui-cell_vcode {
+    padding: 0;
+}
+.battle .weui-vcode-btn {
+    margin-left: 0;
+    padding: 0 1rem 0 1rem;
+}
+.battle .weui-grids::before{
+    content: none;
+}
+.battle .weui-footer_fixed-bottom {
+    bottom: 0;
+}
+
+/* Result.vue */
+.result-box p span {
+    color: red;
+    font-size: 3rem;
+}
+.weui-badge {
+    background-color: #000;
+}
+.weui-cell_access .weui-cell__ft:after{
+    content: none
+}
+.weui-cell_access .weui-cell__ft {
+    padding-right: 0;
+    font-size: 1rem;
+}
+.weui-form-preview__label {
+    text-align: left;
+    text-align-last: left;
+}
+
+
+/*　　这是匹配横屏的状态，横屏时的css代码　　*/
+@media all and (orientation : landscape) { 
+    /* .battle .weui-form-preview {
+        height: 43vh;
+    } */
+    .battle .weui-grid {
+        padding: 5px;
+    }
+    .battle .weui-grid .weui-grid__label {
+        font-size: 1.2rem;
+    }
+    .battle .weui-cells.weui-cells_form {
+        display: none;
+    }
+    .battle .weui-grids::before{
+        content: ' ';
+    }
+    .battle h1.page__title {
+        line-height: 150%;
+    }
+} 
+
+
+
+/* your css rules for ip6p 竖屏 */
+@media all and (device-width: 414px) and (device-height: 736px) and (orientation:portrait) {
+    /* .battle .weui-form-preview {
+        height: 37vh;
+    } */
+    .battle h1.page__title {
+        padding: 2rem 0;
+    }
+}
+  
+/* your css rules for ip6p 横屏 */
+@media all and (device-width: 736px) and (device-height: 414px) and (orientation:landscape) {
+    .battle .weui-grid .weui-grid__label {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* your css rules for ipad 竖屏 */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    .battle .weui-grid__label {
+        font-size: 3.5rem;
+    }
+    .battle h1.page__title {
+        padding: 5rem 0;
+        font-size: 5rem;
+    }
+    /* .battle .weui-form-preview {
+        height: 44vh;
+    } */
+}
+  
+/* your css rules for ipad 横屏 */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+    .battle .weui-grid .weui-grid__label {
+        font-size: 3rem;
+    }
+    .battle h1.page__title {
+        padding: 3rem 0;
+        font-size: 5rem;
+    }
+    /* .battle .weui-form-preview {
+        height: 41vh;
+    } */
+}
