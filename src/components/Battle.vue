@@ -1,13 +1,6 @@
 <script>
     import Vue from 'vue';
 
-    document.addEventListener('topic.timeout', function(e) {
-      if ($scope.model.timeout2Stop) {
-        console.log('超时了。。。')
-        done();
-      }
-    });
-
     export default {
 	  data() {
 		return this.GLOBAL;
@@ -18,8 +11,6 @@
             var currAnswer = $scope.resulut[$scope.model.topicIndex];
             if (_.isUndefined(currAnswer) || _.isNull(currAnswer) || currAnswer == '') {
                 $scope.model.isError = true;
-                // 设置输入框选中
-                //clickElement('#topicBox');
                 return;
             } else {
                 $scope.model.isError = false;
@@ -38,19 +29,16 @@
                 return;
             if (idx == 1 && $scope.model.topicIndex + 1 == $scope.lines.length)
                 return;
-
             // 未完成答题，显示下一题（只需要改变题号）
             $scope.model.topicIndex = $scope.model.topicIndex + idx;
             Vue.set($scope.resulut, $scope.model.topicIndex, '');
         },
         showTopicAndAnswer() {
 			var $scope = this;
-            console.log('showTopicAndAnswer>>>>>>>>>>>>>>>1');
             var topic = $scope.lines[$scope.model.topicIndex];
 			var answer = $scope.resulut[$scope.model.topicIndex];
 			if (!answer)
 				return topic;
-			console.log('showTopicAndAnswer>>>>>>>>>>>>>>>2', $scope.model.topicIndex, topic, answer);
 			var tmpAns = '<font color="red">' + answer + '</font>';
 			if (topic.indexOf('( )') > -1)
 				return topic.replace('( )', tmpAns);
@@ -67,7 +55,6 @@
                 newValue = newValue.substr(1);
             if (newValue.length > 1 && newValue.charAt(0) == '0')
                 newValue = newValue.substr(1);
-            //$scope.resulut[$scope.model.topicIndex] = newValue;
             Vue.set($scope.resulut, $scope.model.topicIndex, newValue);
         },
         touchSub() {
@@ -75,15 +62,12 @@
             var old = _.isUndefined($scope.resulut[$scope.model.topicIndex]) 
                 ? '' 
                 : $scope.resulut[$scope.model.topicIndex];
-            //$scope.resulut[$scope.model.topicIndex] = old.substr(0, old.length-1);
             Vue.set($scope.resulut, $scope.model.topicIndex, old.substr(0, old.length-1));
         },
         touchClear() {
             var $scope = this;
-            //$scope.resulut[$scope.model.topicIndex] = "";
             Vue.set($scope.resulut, $scope.model.topicIndex, '');
         },
-
         done() {
             var $scope = this;
 
@@ -92,9 +76,6 @@
             // 完成答题，显示答案：
             $scope.model.step = 'step3';
 
-            window.trackEvent('挑战结束', '-');
-            window.pageView('/Result');
-            $scope.$router.push('/Result');
             // ==== 以下为统计结果 ====
 
             // 计算用时
@@ -118,9 +99,9 @@
                 }
 
                 if (currTopic.indexOf('(') > -1){
-                    $scope.lines[index] = currTopic.replace('( )', '('+userAnswer+')');
+                    Vue.set($scope.lines, index, currTopic.replace('( )', '('+userAnswer+')'));
                 } else {
-                    $scope.lines[index] = currTopic+userAnswer;
+                    Vue.set($scope.lines, index, currTopic+userAnswer);
                 }
 
                 //做对
@@ -132,9 +113,6 @@
                 }
             });
 
-            // 错题量
-            //errorNum = $scope.model.topicNum - rightNum - unAnswerNum;
-
             // 得分
             score = Math.round(rightNum * 100 / $scope.model.topicNum);
 
@@ -145,7 +123,7 @@
                 .replace('{score}', score);
 
             // 友好化提示
-            if (score > 89) {
+            if (score >= 90) {
                 $scope.model.analysisResult += '干得漂亮，继续保持哦！';
             } else {
                 $scope.model.analysisResult += '有待提升，再接再厉吧！';
@@ -159,8 +137,19 @@
             else
                 $scope.model.tenTopicTime = '100年';
 
-            // 刷新界面显示结果
-            //scopeApply($scope);
+            window.trackEvent('挑战结束', '-');
+            window.pageView('/Result');
+            $scope.$router.push('/Result');
+            
+        },
+        onTimeout(e) {
+            stopEvent(e);
+            var $scope = this;
+            if ($scope.model.timeout2Stop) {
+                console.log('超时了。。。')
+                $scope.done();
+            }
+            document.removeEventListener('topictimeout', $scope.onTimeout, false);
         }
       },
       created: function () {
@@ -169,12 +158,7 @@
             $scope.$router.push('/');
             return;
         }
-        document.addEventListener('topictimeout', function(e) {
-            if ($scope.model.timeout2Stop) {
-                console.log('超时了。。。')
-                $scope.done();
-            }
-        });
+        document.addEventListener('topictimeout', $scope.onTimeout, false);
       }
 	}
 </script>

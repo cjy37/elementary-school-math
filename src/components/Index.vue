@@ -1,7 +1,4 @@
 <script>
-
-    
-
     export default {
         data() {
             //var abc = window.screen;
@@ -132,11 +129,10 @@
 
     <div class="weui-footer weui-footer_fixed-bottom">
         <p class="weui-footer__links">
-            <a href="javascript:" class="weui-footer__link" @click="onDashang()">V3.0.7 我要赞赏</a>
+            <a href="javascript:" class="weui-footer__link" @click="onDashang()">V3.0.8 我要赞赏</a>
         </p>
         <p class="weui-footer__text">Copyright © 2018 圈圈，最后更新：2018-07-29</p>
     </div>
 </div>
 
 </template>
-

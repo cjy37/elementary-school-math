@@ -1,15 +1,12 @@
 <script>
     export default {
-        data() {
-            return this.GLOBAL;
-        },
         methods: {
             onBack(){
                 var $scope = this;
                 window.trackEvent('赞赏返回', '-');
                 window.pageView('/');
                 $scope.$router.push('/');
-            },
+            }
         }
 	}
 </script>

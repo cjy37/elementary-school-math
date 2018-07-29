@@ -58,12 +58,6 @@ export default {
     <div class="page__bd">
         <div class="weui-cells__title">详细结果</div>
         <div class="weui-cells">
-            <!-- <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <p>联系人名称</p>
-                    <p style="font-size: 13px;color: #888888;">摘要信息</p>
-                </div>
-            </div> -->
 
             <div class="weui-cell weui-cell_access"  v-for="(topic, i) in lines" :key="i">
                 <div class="weui-cell__bd">
@@ -92,7 +86,6 @@ export default {
                         <br>　2) 统计进步曲线
                         <br>　3) 记录做的慢的题
                         <br>　4) 记录易错题
-                        <br>　...
                     </label>
                 </div>
                 <div class="weui-form-preview__item">
