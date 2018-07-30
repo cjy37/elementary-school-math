@@ -1,11 +1,12 @@
-import Index from './components/Index';
-import Battle from './components/Battle';
-import Result from './components/Result';
-import Dashang from './components/Dashang';
+import Index from './pages/index/index';
+import Battle from './pages/battle/index';
+import Result from './pages/result/index';
+import Dashang from './pages/dashang/index';
 
 export default [
-    { path: '/', component: Index },
-    { path: '/Battle', component: Battle },
-    { path: '/Result', component: Result },
-    { path: '/Dashang', component: Dashang },
+    { path: '/',      redirect: '/index' },
+    { path: '/index', component: Index },
+    { path: '/battle', component: Battle },
+    { path: '/result', component: Result },
+    { path: '/dashang', component: Dashang },
 ];

@@ -1,11 +1,13 @@
 <script>
+
+import __ from '../../assets/js/common';
+
     export default {
         methods: {
             onBack(){
-                var $scope = this;
-                window.trackEvent('赞赏返回', '-');
-                window.pageView('/');
-                $scope.$router.push('/');
+                __.trackEvent('赞赏返回', '-');
+                __.pageView('/index');
+                this.$router.push('/index');
             }
         }
 	}
@@ -36,7 +38,7 @@
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">
-                        <img src="../assets/logo.jpg" style="width: 60%;margin: 10px auto;display: block;">
+                        <img src="../../assets/logo.jpg" style="width: 60%;margin: 10px auto;display: block;">
                     </label>
                 </div>
             </div>

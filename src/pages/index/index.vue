@@ -1,47 +1,54 @@
 <script>
+import moment from 'moment';
+import 'moment/locale/zh-cn';  // without this line it didn't work
+moment.locale('zh-cn');
+
+import __ from '../../assets/js/common';
+import topic10 from '../../assets/js/topics10';
+import topic1000 from '../../assets/js/topics1000';
+import topic99 from '../../assets/js/topics99';
+
+const topics = {topic10, topic1000, topic99}
+
     export default {
         data() {
-            //var abc = window.screen;
-            //this.GLOBAL.abc = abc;
             return this.GLOBAL;
         },
         methods: {
             onDashang(){
-                var $scope = this;
-                window.trackEvent('赞赏', '首页进入');
-                window.pageView('/Dashang');
-                $scope.$router.push('/Dashang');
+                __.trackEvent('赞赏', '首页进入');
+                __.pageView('/dashang');
+                this.$router.push('/dashang');
             },
             onStep1Click() {
-                var $scope = this;
                 // 重新设置题号
-                $scope.model.topicIndex = 0;
-                $scope.lines = [];
-                $scope.answers = [];
-                $scope.resulut = [];
+                this.model.topicIndex = 0;
+                this.lines = [];
+                this.answers = [];
+                this.resulut = [];
 
                 // 准备好题目
-                formatTopics($scope.model.topicNum, window[$scope.model.level], $scope.lines, $scope.answers);
+                __.formatTopics(this.model.topicNum, topics[this.model.level], this.lines, this.answers);
                         
                 // ============= 下面初始化界面：
 
                 // 显示第二步，开始答题
-                $scope.model.step = 'step2';
+                this.model.step = 'step2';
 
                 // 显示倒计时
-                Ticts.createTicts("times", moment().add($scope.model.times, 'm'));
+                __.Ticts.createTicts("times", moment().add(this.model.times, 'm'));
 
                 // 开始答题，记录开始时间
-                $scope.model.startTime = moment();
-                window.trackEvent('开始挑战', $scope.model.level+'|'+$scope.model.times+'|'+$scope.model.topicNum);
-                window.pageView('/Battle');
-                $scope.$router.push('/Battle');
+                this.model.startTime = moment();
+                __.trackEvent('开始挑战', this.model.level+'|'+this.model.times+'|'+this.model.topicNum);
+                __.pageView('/battle');
+                this.$router.push('/battle');
                 
             }
         },
         created: function () {
             setTimeout(function () {
-                window.pageView('/');
+                __.pageView('/index');
             },300);
         }
 	}
@@ -62,8 +69,9 @@
                 </div>
                 <div class="weui-cell__bd">
                     <select class="weui-select" v-model="model.level">
-                        <option value="topic10">10以内</option>
-                        <option value="topic1000">100以内</option>
+                        <option value="topic10">10以内加减</option>
+                        <option value="topic1000">100以内加减</option>
+                        <option value="topic99">九九乘法</option>
                     </select>
                 </div>
             </div>
@@ -129,9 +137,9 @@
 
     <div class="weui-footer weui-footer_fixed-bottom">
         <p class="weui-footer__links">
-            <a href="javascript:" class="weui-footer__link" @click="onDashang()">V3.0.8 我要赞赏</a>
+            <a href="javascript:" class="weui-footer__link" @click="onDashang()">{{version}} 我要赞赏</a>
         </p>
-        <p class="weui-footer__text">Copyright © 2018 圈圈，最后更新：2018-07-29</p>
+        <p class="weui-footer__text">Copyright © 2018 圈圈，最后更新：{{updateDate}}</p>
     </div>
 </div>
 

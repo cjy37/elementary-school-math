@@ -1,5 +1,6 @@
 <script>
 import Vue from 'vue';
+import __ from '../../assets/js/common';
 
 export default {
     data() {
@@ -7,7 +8,6 @@ export default {
     },
     methods: {
         restart() {
-            var $scope = this;
             var newScope = {
                 lines: [],
                 answers: [],
@@ -28,16 +28,16 @@ export default {
             };
             var historyModel = { 
                 model: {
-                    topicNum: $scope.model.topicNum,
-                    times: $scope.model.times,
-                    timeout2Stop: $scope.model.timeout2Stop,
-                    level: $scope.model.level
+                    topicNum: this.model.topicNum,
+                    times: this.model.times,
+                    timeout2Stop: this.model.timeout2Stop,
+                    level: this.model.level
                 }
             };
-            _.extend($scope, newScope, historyModel);
+            _.extend(this, newScope, historyModel);
 
-            window.trackEvent('再次挑战', '-');
-            $scope.$router.push('/');
+            __.trackEvent('再次挑战', '-');
+            this.$router.push('/index');
         }
 
     }
@@ -93,7 +93,7 @@ export default {
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">
-                        <img src="../assets/logo.jpg" style="width: 60%;margin: 10px auto;display: block;">
+                        <img src="../../assets/logo.jpg" style="width: 60%;margin: 10px auto;display: block;">
                     </label>
                 </div>
             </div>

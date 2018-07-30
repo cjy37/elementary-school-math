@@ -12,8 +12,12 @@ const step = 'step1';
 const topicIndex = 0;
 const isError = false;
 const level = 'topic1000';
+const version = 'V3.1.0';
+const updateDate = '2018-07-31';
 
 export default {
+  version,
+  updateDate,
   // 解析后的题库
   lines,
   // 解析后的正解

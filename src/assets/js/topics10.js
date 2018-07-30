@@ -1,4 +1,4 @@
-window.topic10=`5+4=
+var topic10 = `5+4=
 3+6=
 4+2=
 9+0=
@@ -323,3 +323,12 @@ window.topic10=`5+4=
 8-2=
 0+8=
 8+1=`;
+
+var list = topic10.replace(/\t/g, '')
+.replace(/ /g, '')
+.replace(/＋/g, '+')
+.replace(/－/g, '-')
+.replace(/＝/g, '=')
+.replace(/　/g, '').split(/\n/);
+
+export default list

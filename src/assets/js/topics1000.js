@@ -1,5 +1,5 @@
 //小学一年级数学口算题大全(1000多道)
-window.topic1000=`50+12=
+var topic1000 = `50+12=
 16+30=
 32+45=
 7+61=
@@ -2011,3 +2011,12 @@ window.topic1000=`50+12=
 75-40-3=
 22-20+50=
 36+20-20=`;
+
+var list = topic1000.replace(/\t/g, '')
+.replace(/ /g, '')
+.replace(/＋/g, '+')
+.replace(/－/g, '-')
+.replace(/＝/g, '=')
+.replace(/　/g, '').split(/\n/);
+
+export default list
