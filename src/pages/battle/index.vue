@@ -148,7 +148,7 @@ export default {
       this.$router.push("/result")
     },
     onTimeout(e) {
-      stopEvent(e);
+      __.stopEvent(e);
       if (this.model.timeout2Stop) {
         console.log("超时了。。。");
         this.done();
