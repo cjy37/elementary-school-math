@@ -164,7 +164,7 @@ Ticts.prototype.createTicts = function (id, dealline) {
       _ticts.time -= 1000;
       if (_ticts.time < 0) {
         ticts.deleteTicts(id); //判断是否到期,到期后自动删除定时器
-        fireDocumentEvent('topictimeout', '超时到期');
+        w.fireDocumentEvent('topictimeout', '超时到期');
       }
     }, 1000)
   }
